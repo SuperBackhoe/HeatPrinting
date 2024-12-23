@@ -1,0 +1,64 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build/Debug"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Compile the STM32 project using CMake"
+        },
+        {
+            "label": "Flash",
+            "type": "shell",
+            "command": "openocd",
+            "args": [
+                "-f",
+                "interface/stlink.cfg",
+                "-f",
+                "target/stm32f1x.cfg",
+                "-c",
+                "program ${workspaceFolder}/build/Debug/output.elf verify reset exit"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "Flash the compiled program to the STM32 microcontroller"
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: arm-none-eabi-gcc 生成活动文件",
+            "command": "/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.200.202406191456/tools/bin/arm-none-eabi-gcc",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "Compile the currently active file using GCC"
+        }
+    ]
+}

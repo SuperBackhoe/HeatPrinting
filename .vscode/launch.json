@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug STM32 (Cortex-Debug)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "${workspaceFolder}",
+            //"executable": "${workspaceFolder}/build/output.elf",
+            "executable": "${workspaceFolder}/build/Debug/${workspaceFolderBasename}.elf",
+            "device": "STM32F103C8",
+            "configFiles": [
+                "interface/stlink.cfg",
+                "target/stm32f1x.cfg"
+            ],
+            //"runToMain": true,
+            "preLaunchCommands": [
+                "monitor reset init" // 在烧录前初始化芯片
+            ],
+            "postLaunchCommands": [
+                //"break main", // 在 main 函数设置断点
+                "load",
+                "monitor reset run"
+                //"continue" // 继续运行直到 main
+            ],
+            "svdFile": "/path/to/stm32f103.svd",
+            "showDevDebugOutput": "raw"
+        }
+    ]
+}
