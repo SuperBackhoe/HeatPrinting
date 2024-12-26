@@ -1,2 +1,3 @@
-HeatPrinting project base on STM32F103C8T6(Open Source)
-有空再写
+HeatPrinting project based on STM32F103C8T6
+whatever im on busy
+其他有空再写
